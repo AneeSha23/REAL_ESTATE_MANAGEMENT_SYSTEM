@@ -9,3 +9,12 @@ def login(request):
 
 def register(request):
     return render(request, 'register.html')
+
+def singleview(request):
+    return render(request, 'singleview.html')
+
+def propertyform(request):
+    return render(request, 'sellform.html')
+
+def buyform(request):
+    return render(request, 'buyForm.html')

@@ -25,18 +25,29 @@
   <link rel="stylesheet" type="text/css"  href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
   <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 
-  <title>Homespace Free HTML Template by Untree.co</title>
+  <title>
+    {% block title %}{% endblock %}
+  </title>
 </head>
 
 <body>
 
     
-    
+  <div class="lines-wrap">
+    <div class="lines-inner">
+      <div class="lines"></div>
+    </div>
+  </div>
+  <!-- END lines -->
+  
+  {% include 'navbar.html' %}
 
     {% block body %}
    
     {% endblock %}
 
+    {% include 'footer.html' %}
+    
     <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
     <script src="{% static 'js/popper.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
