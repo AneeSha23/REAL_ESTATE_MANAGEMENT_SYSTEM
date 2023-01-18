@@ -11,51 +11,71 @@
      
       <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="200">
         <div class="col-lg-8 bg-white p-5">
-          <form class="contact-form" >
+          <form class="contact-form" method="post" enctype="multipart/form-data" >
+            {% csrf_token %}
             <div class="row">
               <div class="col-6">
                 <div class="form-group">
                   <label class="text-black" for="fname">Property name</label>
-                  <input type="text" class="form-control" id="fname">
+                  <input type="text" name="property" class="form-control" id="fname">
                 </div>
               </div>
               <div class="col-6">
                 <div class="form-group">
                   <label class="text-black" for="lname">Owner</label>
-                  <input type="text" class="form-control" id="lname">
+                  <input type="text" name="owner" class="form-control" id="lname">
                 </div>
               </div>
             </div>
-            <div class="form-group">
-              <label class="text-black" for="email">Location</label>
-              <input type="text" class="form-control" id="email">
-            </div>
 
+
+            
+            <div class="form-group">
+                <label class="text-black" for="password2">Location</label>
+
+                <select class="form-control" name="location" aria-label="Default select example">
+                    <option selected>Select Location</option>
+                    <option value="Kerala"> Kerala </option>
+                    <option value="TamilNadu"> TamilNadu </option>
+                    <option value="Karnataka"> Karnataka </option>
+                  </select>
+            </div>
             <div class="form-group">
                 <label class="text-black" for="email">Price</label>
-                <input type="number" class="form-control" id="email">
+                <input type="number" name="price" class="form-control" id="email">
               </div>
 
             <div class="form-group">
               <label class="text-black" for="password">Phone Number</label>
-              <input type="text" class="form-control" id="password">
+              <input type="text" name="phone" class="form-control" id="password">
             </div>
 
             <div class="form-group">
               <label class="text-black" for="password2">Landmark</label>
-              <input type="text" class="form-control" id="password2">
+              <textarea type="text" name="landmark" class="form-control" id="password2"></textarea>
             </div>
 
             <div class="form-group">
                 <label class="text-black" for="password2">Category</label>
 
-                <select class="form-control" aria-label="Default select example">
+                <select class="form-control" name="cat" aria-label="Default select example">
                     <option selected>Select Category</option>
-                    <option value="1">Sale</option>
-                    <option value="2">Rent</option>
-                    <option value="3">Short Term</option>
+                    <option value="Sale">Sale</option>
+                    <option value="Rent">Rent</option>
+                    <option value="Short Time">Short Time</option>
                   </select>
             </div>
+
+            <div class="form-group">
+              <label class="text-black" for="password2">Description</label>
+              <textarea type="text" name="desc" class="form-control" rows="5"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label class="text-black">Property Images</label>
+              <input type="file" name="image" multiple class="form-control" rows="5">
+            </div>
+
             <div class="form-group">
               <p>
                 <small>By proceeding, you agree to the <a href="#">Terms and Conditions</a></small>

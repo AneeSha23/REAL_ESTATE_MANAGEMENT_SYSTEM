@@ -260,6 +260,9 @@ Real Estate Management System
 
 
 
+
+
+
   <div class="untree_co-section bg-light">
     <div class="container">
       <div class="row align-items-center mb-3">
@@ -273,11 +276,13 @@ Real Estate Management System
       </div>
     </div>
     <div class="owl-3-slider owl-carousel">
+      
+      {% for i in details %}
       <div class="item">
         <div class="property-entry">
-          <img src="{% static 'images/property_1-min.jpg' %}" alt="Image" class="img-fluid">
+          <img src="{{i.image.url}}" alt="Image" style="width: 100%; height: 300px; object-fit:cover;">
           <div class="property-specs">
-            <strong class="price">$849,200</strong>
+            <strong class="price">{{i.price}}</strong>
             <ul class="list-unstyled specs">
               <li class="d-inline-flex align-items-center">
                 <span class="icon-wrap flaticon-bathtub"></span>
@@ -296,10 +301,10 @@ Real Estate Management System
             <div class="location d-flex justify-content-between align-items-center">
               <div>
                 <span class="d-block caption">location: </span>
-                <h3><a href="#"><span>2 Zwar Place, Florey</span></a></h3>
+                <h3><a href="#"><span>{{i.location}}</span></a></h3>
               </div>
               <div class="more">
-                <a href="#">
+                <a href="{% url 'singleview' i.id %}">
                   <span class="icon-keyboard_backspace"></span>
                 </a>
               </div>
@@ -308,181 +313,8 @@ Real Estate Management System
           </div>
         </div> <!-- /.property-entry --> 
       </div> <!-- /.item -->
-      <div class="item">
-        <div class="property-entry">
-          <img src="{% static 'images/property_2-min.jpg' %}" alt="Image" class="img-fluid">
-          <div class="property-specs">
-            <strong class="price">$900,295</strong>
-            <ul class="list-unstyled specs">
-              <li class="d-inline-flex align-items-center">
-                <span class="icon-wrap flaticon-bathtub"></span>
-                <strong>2</strong>
-              </li>
-              <li class="d-inline-flex align-items-center">
-                <span class="icon-wrap flaticon-bed"></span>
-                <strong>4</strong>
-              </li>
-              <li class="d-inline-flex align-items-center">
-                <span class="icon-wrap flaticon-house-size"></span>
-                <strong>120<sup>2</sup></strong>
-              </li>
-            </ul>
-
-            <div class="location d-flex justify-content-between align-items-center">
-              <div>
-                <span class="d-block caption">location: </span>
-                <h3><a href="#"><span>2 Zwar Place, Florey</span></a></h3>
-              </div>
-              <div class="more">
-                <a href="#">
-                  <span class="icon-keyboard_backspace"></span>
-                </a>
-              </div>
-            </div>
-            
-          </div>
-        </div> <!-- /.property-entry --> 
-      </div> <!-- /.item -->
-      <div class="item">
-        <div class="property-entry">
-          <img src="{% static 'images/property_3-min.jpg' %}" alt="Image" class="img-fluid">
-          <div class="property-specs">
-            <strong class="price">$2,013,920</strong>
-            <ul class="list-unstyled specs">
-              <li class="d-inline-flex align-items-center">
-                <span class="icon-wrap flaticon-bathtub"></span>
-                <strong>2</strong>
-              </li>
-              <li class="d-inline-flex align-items-center">
-                <span class="icon-wrap flaticon-bed"></span>
-                <strong>4</strong>
-              </li>
-              <li class="d-inline-flex align-items-center">
-                <span class="icon-wrap flaticon-house-size"></span>
-                <strong>120<sup>2</sup></strong>
-              </li>
-            </ul>
-
-            <div class="location d-flex justify-content-between align-items-center">
-              <div>
-                <span class="d-block caption">location: </span>
-                <h3><a href="#"><span>2 Zwar Place, Florey</span></a></h3>
-              </div>
-              <div class="more">
-                <a href="#">
-                  <span class="icon-keyboard_backspace"></span>
-                </a>
-              </div>
-            </div>
-            
-          </div>
-        </div> <!-- /.property-entry --> 
-      </div> <!-- /.item -->
-      <div class="item">
-        <div class="property-entry">
-          <img src="{% static 'images/property_1-min.jpg' %}" alt="Image" class="img-fluid">
-          <div class="property-specs">
-            <strong class="price">$849,200</strong>
-            <ul class="list-unstyled specs">
-              <li class="d-inline-flex align-items-center">
-                <span class="icon-wrap flaticon-bathtub"></span>
-                <strong>2</strong>
-              </li>
-              <li class="d-inline-flex align-items-center">
-                <span class="icon-wrap flaticon-bed"></span>
-                <strong>4</strong>
-              </li>
-              <li class="d-inline-flex align-items-center">
-                <span class="icon-wrap flaticon-house-size"></span>
-                <strong>120<sup>2</sup></strong>
-              </li>
-            </ul>
-
-            <div class="location d-flex justify-content-between align-items-center">
-              <div>
-                <span class="d-block caption">location: </span>
-                <h3><a href="#"><span>2 Zwar Place, Florey</span></a></h3>
-              </div>
-              <div class="more">
-                <a href="#">
-                  <span class="icon-keyboard_backspace"></span>
-                </a>
-              </div>
-            </div>
-            
-          </div>
-        </div> <!-- /.property-entry --> 
-      </div> <!-- /.item -->
-      <div class="item">
-        <div class="property-entry">
-          <img src="{% static 'images/property_2-min.jpg' %}" alt="Image" class="img-fluid">
-          <div class="property-specs">
-            <strong class="price">$900,295</strong>
-            <ul class="list-unstyled specs">
-              <li class="d-inline-flex align-items-center">
-                <span class="icon-wrap flaticon-bathtub"></span>
-                <strong>2</strong>
-              </li>
-              <li class="d-inline-flex align-items-center">
-                <span class="icon-wrap flaticon-bed"></span>
-                <strong>4</strong>
-              </li>
-              <li class="d-inline-flex align-items-center">
-                <span class="icon-wrap flaticon-house-size"></span>
-                <strong>120<sup>2</sup></strong>
-              </li>
-            </ul>
-
-            <div class="location d-flex justify-content-between align-items-center">
-              <div>
-                <span class="d-block caption">location: </span>
-                <h3><a href="#"><span>2 Zwar Place, Florey</span></a></h3>
-              </div>
-              <div class="more">
-                <a href="#">
-                  <span class="icon-keyboard_backspace"></span>
-                </a>
-              </div>
-            </div>
-            
-          </div>
-        </div> <!-- /.property-entry --> 
-      </div> <!-- /.item -->
-      <div class="item">
-        <div class="property-entry">
-        <img src="{% static 'images/property_3-min.jpg' %}" alt="Image" class="img-fluid">
-          <div class="property-specs">
-            <strong class="price">$2,013,920</strong>
-            <ul class="list-unstyled specs">
-              <li class="d-inline-flex align-items-center">
-                <span class="icon-wrap flaticon-bathtub"></span>
-                <strong>2</strong>
-              </li>
-              <li class="d-inline-flex align-items-center">
-                <span class="icon-wrap flaticon-bed"></span>
-                <strong>4</strong>
-              </li>
-              <li class="d-inline-flex align-items-center">
-                <span class="icon-wrap flaticon-house-size"></span>
-                <strong>120<sup>2</sup></strong>
-              </li>
-            </ul>
-
-            <div class="location d-flex justify-content-between align-items-center">
-              <div>
-                <span class="d-block caption">location: </span>
-                <h3><a href="#"><span>2 Zwar Place, Florey</span></a></h3>
-              </div>
-              <div class="more">
-                <a href="#">
-                  <span class="icon-keyboard_backspace"></span>
-                </a>
-              </div>
-            </div>
-            
-          </div>
-        </div> <!-- /.property-entry --> 
-      </div> <!-- /.item -->
+      
+      {% endfor %}
     </div> <!-- /.owl-3-slider -->      
   </div>
 
