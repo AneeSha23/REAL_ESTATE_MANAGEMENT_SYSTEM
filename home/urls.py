@@ -8,5 +8,6 @@ urlpatterns=[
     path('single/<int:pk>',views.singleview, name='singleview'),
     path('sell/', views.propertyform, name='propertyform'),
     path('buy/',views.buyform, name='buyform'),
-    path('all/',views.allProperties,name='allProperties')
+    path('all/',views.allProperties,name='allProperties'),
+
 ]

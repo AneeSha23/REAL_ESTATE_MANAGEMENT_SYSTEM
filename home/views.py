@@ -43,5 +43,10 @@ def buyform(request):
 
 
 def allProperties(request):
-    properties = SellProperty.objects.all()
+    if 'search' in request.GET:
+        search = request.GET['search']
+        properties = SellProperty.objects.filter(location__icontains = search)
+    else:
+        properties = SellProperty.objects.all()
     return render(request,'allProperties.html',{'properties':properties})
+
