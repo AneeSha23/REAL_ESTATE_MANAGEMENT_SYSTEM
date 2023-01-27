@@ -1,0 +1,111 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+
+<div class="untree_co-section bg-light">
+    <div class="container">
+     
+      <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="200">
+        <div class="col-lg-8 bg-white p-5">
+          <form class="contact-form" method="post" >
+            {% csrf_token %}
+            <div class="row">
+              <div class="col-6">
+                <div class="form-group">
+                  <label class="text-black" for="fname">Property name</label>
+                  <input type="text" disabled value="{{property.name}}" class="form-control" id="fname">
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group">
+                  <label class="text-black" for="lname">Owner</label>
+                  <input type="text" disabled value="{{property.owner}}" class="form-control" id="lname">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <div class="form-group">
+                  <label class="text-black" for="fname">Location</label>
+                  <input type="text" disabled value="{{property.location}}" class="form-control" id="loc">
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group">
+                  <label class="text-black" for="lname">Price</label>
+                  <input type="text" disabled value="{{property.price}}" class="form-control" id="price">
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="text-black" for="email">Type</label>
+              <input type="text" disabled value="{{property.type}}" class="form-control" id="type">
+            </div>
+            <div class="form-group">
+              <label class="text-black" for="email">Buyer's Name</label>
+              <input type="text" value="{{user.username}}" name="bname" class="form-control" id="dob">
+            </div>
+            <div class="form-group">
+              <label class="text-black" for="email">Date of Birth </label>
+              <input type="date" name="dob" class="form-control" id="dob">
+            </div>
+
+            <div class="form-group">
+                <label class="text-black" for="lname">Bank Name</label>
+                <input type="text" name='bank' class="form-control" id="lname">
+              </div>
+
+              <div class="form-group">
+                <label class="text-black" for="lname">Bank branch</label>
+                <input type="text" name="branch" class="form-control" id="lname">
+              </div>
+              <div class="form-group">
+              <label class="text-black" for="password2">Total Years</label>
+
+              <select class="form-control" name="years" aria-label="Default select example">
+                  <option selected>Select a year</option>
+                  <option value="1"> 1 </option>
+                  <option value="2"> 2 </option>
+                  <option value="3"> 3 </option>
+                  <option value="4"> 4 </option>
+                  <option value="5"> 5 </option>
+                </select>
+          </div>
+
+          <div class="form-group">
+            <label class="text-black" for="password2">Amount per month</label>
+
+            <select class="form-control" name="amount" aria-label="Default select example">
+                <option selected>Select an amount</option>
+                <option value="3000"> 3000 </option>
+                <option value="4000"> 4000 </option>
+                <option value="5000"> 5000 </option>
+                <option value="6000"> 6000 </option>
+                <option value="7000"> 7000 </option>
+                <option value="8000"> 8000 </option>
+                <option value="9000"> 9000 </option>
+                <option value="10000"> 10000 </option>
+              </select>
+        </div>
+
+            <div class="form-group">
+              <p>
+                <small>By proceeding, you agree to the <a href="#">Terms and Conditions</a></small>
+              </p>
+            </div>
+
+            <button type="submit" class="btn btn-primary mb-4"> Submit </button>
+
+            
+          </form>
+        </div> <!-- /.col-lg-7 -->
+      </div> <!-- /.row -->
+    </div> <!-- /.container -->
+  </div> <!-- /.untree_co-section bg-light -->
+
+
+{% endblock %}

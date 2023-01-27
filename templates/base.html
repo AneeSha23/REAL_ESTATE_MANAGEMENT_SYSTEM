@@ -33,6 +33,10 @@
     <!-- responsive style -->
     <link href="{% static 'single/css/responsive.css' %}" rel="stylesheet" />
 
+    <!-- dashboard Table -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+    <link rel="stylesheet" href="{% static 'css1/style.css' %}">
   <title>
     {% block title %}{% endblock %}
   </title>
@@ -70,10 +74,15 @@
 <!-- popper js -->
 <script src="{% static 'single/js/popper.min.js' %}"></script>
 <!-- bootstrap js -->
-<script src="{%'single/js/bootstrap.js'}"></script>
+<script src="{% static 'single/js/bootstrap.js' %}"></script>
 <!-- custom js -->
 <script src="{% static 'single/js/custom.js' %}"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
+
+    <!-- UsereDashboard Scripts -->
+  <script src="{% static 'js1/popper.js' %}"></script>
+  <script src="{% static 'js1/bootstrap.min.js' %}"></script>
+  <script src="{% static 'js1/main.js' %}"></script>
     </body>
     
     </html>

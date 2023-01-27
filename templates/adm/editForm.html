@@ -1,0 +1,115 @@
+{% extends 'adm/base.html' %}
+{% load static %}
+
+{% block title %} Admin Dashboard {% endblock %}
+
+
+{% block body %}
+
+<div class="container-xxl flex-grow-1 container-p-y">
+    <div class="row">
+        <div class="col-xxl">
+            <div class="card mb-4">
+                <div class="card-header d-flex align-items-center justify-content-between">
+                    <h5 class="mb-0">Update Form</h5>
+                </div>
+                <div class="card-body">
+                    <form method="post" action="{% url 'formUpdate' Data.id %}">
+                        {% csrf_token %}
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label">Property</label>
+                            <div class="col-sm-10">
+                                <input type="text" value="{{Data.name}}" name="property" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label">Owner</label>
+                            <div class="col-sm-10">
+                                <input type="text" value="{{Data.owner}}" name="owner" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label">Price</label>
+                            <div class="col-sm-10">
+                                <div class="input-group input-group-merge">
+                                    <input type="number" value="{{Data.price}}" name="price" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label">Phone No</label>
+                            <div class="col-sm-10">
+                                <input type="text" value="{{Data.phone}}" name="phone" class="form-control" />
+                            </div>
+                        </div>
+                        <div class=" row mb-3">
+                            <label  class="col-sm-2 form-label"> Location</label>
+                            <div class="col-sm-10">
+                            <select id="defaultSelect" disabled name="locatioin" class="form-select">
+                                <option selected>{{Data.location}}</option>
+                                <option value="Kerala"> Kerala </option>
+                                <option value="TamilNadu"> TamilNadu </option>
+                                <option value="Karnataka"> Karnataka </option>
+                            </select>
+                        </div>
+                          </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" >Landmark</label>
+                            <div class="col-sm-10">
+                                <textarea name="landmark" class="form-control">{{Data.landmark}}</textarea>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" >Description</label>
+                            <div class="col-sm-10">
+                                <textarea name="description" class="form-control">{{Data.description}}</textarea>
+                            </div>
+                        </div>
+                        <div class=" row mb-3">
+                            <label  class="col-sm-2 form-label">Category </label>
+                            <div class="col-sm-10">
+                            <select id="defaultSelect" disabled  name="category" class="form-select">
+                                <option selected>{{Data.category}}</option>
+                                <option value="Sale">Sale</option>
+                                <option value="Rent">Rent</option>
+                                <option value="Short Time">Short Time</option>
+                            </select>
+                        </div>
+                          </div>
+
+                          <div class=" row mb-3">
+                            <label  class="col-sm-2 form-label">Type </label>
+                            <div class="col-sm-10">
+                            <select id="defaultSelect" value="{{Data.type}}" name="type" class="form-select">
+                                <option selected>Select Type</option>
+                                <option value="Land">Land</option>
+                                <option value="House">House</option>
+                                <option value="Villas"> Villas</option>
+                                <option value="PG"> PG</option>
+                            </select>
+                        </div>
+                          </div>
+
+                          <div class=" row mb-3">
+                            <label  class="col-sm-2 form-label">Status</label>
+                            <div class="col-sm-10">
+                            <select id="defaultSelect" value="{{Data.status}}" name="status" class="form-select">
+                                <option selected value="approved">Approved</option>
+                                <option value="rejected">Rejected</option>
+                            </select>
+                            </div>
+                        </div>
+                    
+                        <div class="row justify-content-end">
+                            <div class="col-sm-10">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

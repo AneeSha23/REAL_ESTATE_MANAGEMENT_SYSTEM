@@ -1,0 +1,218 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Real Estate Management System
+{% endblock %}
+
+{% block body %}
+{% if user.is_authenticated %}
+
+<section style="background-color: #eee;">
+    
+{% for i in customer %}
+    <div class="container py-5">
+      <div class="row">
+        <div class="col">
+          <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
+            <ol class="breadcrumb mb-0">
+              <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">User Dashboard</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+  
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="card mb-4">
+            <div class="card-body text-center">
+              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+                class="rounded-circle img-fluid" style="width: 120px;">
+              <h5 class="my-3">{{i.name}}</h5>
+              <p class="text-muted mb-1">Full Stack Developer</p>
+              <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
+              
+            </div>
+          </div>
+          
+        </div>
+        <div class="col-lg-8">
+          <div class="card mb-4">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Full Name</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{i.user.first_name}} {{i.user.last}}</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Email</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{i.user.email}}</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Phone</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{i.user.phone}}</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Address</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">Bay Area, San Francisco, CA</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endfor %}
+  </section>
+
+<section class="ftco-section">
+    <div class="container">
+        
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="h5 mb-4 text-center">Your dashboard</h3>
+                <p class="text-start">Total:{{propsCount}} </p>
+                <div class="table-wrap">
+                    <table class="table">
+                      <thead class="thead-primary">
+                        <tr>
+                            <th>&nbsp;</th>
+                            <th>Property</th>
+                          <th>Price</th>
+                          <th>Location</th>
+                          <th>Landmark</th>
+                          <th>Phone</th>
+                          <th>Category</th>
+                          <th>Type</th>
+                          <th>Status</th>
+                          <th>&nbsp;</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for p in props %}
+                       
+                        <tr class="alert" role="alert">
+                            
+                            <td>
+                                <div class="img">
+                                    <a href="{% url 'singleview' p.id %}">
+                                    <img src="{{p.image.url}}" width="100px" height="100px">
+                                </a>
+                                </div>
+                            </td>
+                          <td>
+                              <div class="email">
+                                  <span>{{p.name}} </span>
+                                  <span>{{p.description}}</span>
+                              </div>
+                          </td>
+                          <td>{{p.price}}</td>
+                          <td>{{p.location}}</td>
+                          <td>{{p.landmark}}</td>
+                          <td>{{p.phone}}</td>
+                          <td>{{p.category}}</td>
+                          <td>{{p.type}}</td>
+                          <td>{{p.status}}</td>
+                          <td>
+                              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true"><i class="fa fa-close"></i></span>
+                          </button>
+                        </td>
+                    
+                        </tr>
+                        {% endfor %}
+                        
+                      </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<section class="ftco-section">
+    <div class="container">
+        
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="h5 mb-4 text-center">Cart</h3>
+                <p class="text-start">Total:{{buyCount}} </p>
+                <div class="table-wrap">
+                    <table class="table">
+                      <thead class="thead-primary">
+                        <tr>
+                          <th>&nbsp;</th>
+                          <th>Property</th>
+                          <th>Price</th>
+                          <th>Location</th>
+                          <th>Seller</th>
+                          <th>Phone</th>
+                          <th>Type</th>
+                          <th>Payment</th>
+                          <th>&nbsp;</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for buy in buys %}
+                       
+                        <tr class="alert" role="alert">
+                            
+                            <td>
+                                <div class="img">
+                                    <a href="{% url 'singleview' buy.property.id %}">
+                                    <img src="{{buy.property.image.url}}" width="100px" height="100px">
+                                </a>
+                                </div>
+                            </td>
+                          <td>{{buy.property.name}}</td>
+                          <td>{{buy.property.price}}</td>
+                          <td>{{buy.property.location}}</td>
+                          <td>{{buy.customer.name}}</td>
+                          <td>{{buy.property.phone}}</td>
+                          <td>{{buy.property.type}}</td>
+                          <td>{{buy.payment}}</td>
+                          <td>
+                              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true"><i class="fa fa-close"></i></span>
+                          </button>
+                        </td>
+                    
+                        </tr>
+                        {% endfor %}
+                        
+                      </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+{% endif %}
+{% endblock %}

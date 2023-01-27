@@ -610,7 +610,7 @@ a:focus {
 
 .subscribe_section .box {
     background-color: #d4ced0;
-    padding: 75px 45px;
+    /* padding: 75px 45px; */
 }
 
 .subscribe_section .subscribe_form .heading_container {
@@ -620,8 +620,8 @@ a:focus {
     color: #002c3e;
 }
 
-.subscribe_section .subscribe_form .heading_container h2 {
-    padding: 0 25px;
+.subscribe_section .subscribe_form .heading_container h4 {
+    padding: 0 5px;
 }
 
 .subscribe_section .subscribe_form form {
@@ -1134,6 +1134,9 @@ form input[type="submit"]:focus {
     font-weight: 400;
 }
 
-http: //kute-themes.com/html/boutique/html/index.html
+
+
+
+/* http: //kute-themes.com/html/boutique/html/index.html
 https: //template.hasthemes.com/noraure/noraure/index.html
-https: //preview.hasthemes.com/xoss-preview/xoss/index.html
+https: //preview.hasthemes.com/xoss-preview/xoss/index.html */

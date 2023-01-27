@@ -6,6 +6,51 @@
 
 {% block body %}
 
+
+<div class="container">
+  <div class="row">
+      <div class="col-12 col-xs-12 col-sm-12 col-md-12">
+          <div class="well well-sm">
+              <div class="row">
+                  <div class="col-sm-6 col-md-7">
+                      <img src="{{details.image.url}}" width="100%" alt="" class="img-rounded img-responsive m-3" />
+                  </div>
+                  <div class="col-sm-6 col-md-4 m-3">
+                    
+                      <h4>{{details.name}}</h4>
+                      <small class="flaticon-location">{{details.location}}<i class="fa-solid fa-location-dot"></i></small>
+                      <p>
+                          <i class="glyphicon glyphicon-envelope"></i>email@example.com
+                          <br />
+                          <i class="glyphicon glyphicon-globe"></i><a href="http://www.jquery2dotnet.com">www.jquery2dotnet.com</a>
+                          <br />
+                          <i class="glyphicon glyphicon-gift"></i>June 02, 1988</p>
+                      <!-- Split button -->
+                      <div class="btn-group">
+                          <button type="button" class="btn btn-primary">
+                              Social</button>
+                          <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                              <span class="caret"></span><span class="sr-only">Social</span>
+                          </button>
+                          <ul class="dropdown-menu" role="menu">
+                              <li><a href="#">Twitter</a></li>
+                              <li><a href="https://plus.google.com/+Jquery2dotnet/posts">Google +</a></li>
+                              <li><a href="https://www.facebook.com/jquery2dotnet">Facebook</a></li>
+                              <li class="divider"></li>
+                              <li><a href="#">Github</a></li>
+                          </ul>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+
+
+
 <div class="untree_co-section bg-light">
     <div class="container">
       
@@ -33,7 +78,7 @@
                 <span class="flaticon-building"></span>
               </span>
               <span class="text">
-                And if she hasn’t been rewritten then Vokalia and Consonantia
+                {{details.type}}
               </span>
             </a>
           </li>
@@ -72,9 +117,9 @@
           </li>
 
           <li>
-            <a class="btn" href="{% url 'buyform' %}" style="background: #009ECE; color:#fff">Buy Now</a>
+            <a class="btn" href="{% url 'buyform' details.id %}" style="background: #009ECE; color:#fff">Buy Now</a>
             &nbsp;
-            <button class="btn btn-outline" onMouseOver="this.style.background='#009ECE'; this.style.color='#fff'" onMouseOut="this.style.color='#009ECE'; this.style.background='none'" style="border-color: #009ECE; color:#009ECE;">Emi request</button>
+            <a href="{% url 'emi_request' details.id %}" class="btn btn-outline" onMouseOver="this.style.background='#009ECE'; this.style.color='#fff'" onMouseOut="this.style.color='#009ECE'; this.style.background='none'" style="border-color: #009ECE; color:#009ECE;">Emi request</a>
 
           </li>
 

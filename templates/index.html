@@ -280,17 +280,19 @@ Real Estate Management System
       {% for i in details %}
       <div class="item">
         <div class="property-entry">
+          <a href="{% url 'singleview' i.id %}">
           <img src="{{i.image.url}}" alt="Image" style="width: 100%; height: 300px; object-fit:cover;">
+          </a>
           <div class="property-specs">
             <strong class="price">{{i.price}}</strong>
             <ul class="list-unstyled specs">
               <li class="d-inline-flex align-items-center">
                 <span class="icon-wrap flaticon-bathtub"></span>
-                <strong>2</strong>
+                <strong>{{i.baths}}</strong>
               </li>
               <li class="d-inline-flex align-items-center">
                 <span class="icon-wrap flaticon-bed"></span>
-                <strong>4</strong>
+                <strong>{{i.bed}}</strong>
               </li>
               <li class="d-inline-flex align-items-center">
                 <span class="icon-wrap flaticon-house-size"></span>
@@ -315,9 +317,23 @@ Real Estate Management System
       </div> <!-- /.item -->
       
       {% endfor %}
-    </div> <!-- /.owl-3-slider -->      
+    </div> <!-- /.owl-3-slider -->    
+    
+    
   </div>
-
+  <div class="btn-box text-center">
+    <a href="{% url 'allProperties' %}"  
+      style="padding: 10px 40px;
+            background-color: #009ECE;
+            border: 1px solid #009ECE;
+            color: #ffffff;
+            border-radius: 0;
+            -webkit-transition: all 0.3s;
+            transition: all 0.3s;"
+            >
+        View All products
+    </a>
+</div>
 
   <div class="untree_co-section">
     <div class="container">

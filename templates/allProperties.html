@@ -4,56 +4,97 @@
 
 
 {% block body %}
-<section class="product_section layout_padding">
-    <div class="container">
-        <div class="heading_container heading_center">
-            <h3>
-                All <span>Properties</span>
-            </h3>
-        </div>
-        <div class="row">
-            {% for p in properties %}
-            
-            <div class="col-sm-6 col-md-4 col-lg-3">
-                <div class="box">
-                    <div class="option_container">
-                        <div class="options">
-                            <a href="{% url 'singleview' i.id %}" class="option1">
-                       View Details
-                       </a>
-                            <a href="" class="option2">
-                       Buy Now
-                       </a>
+<div class="search">
+    <div class="wrap" style="width: 80%;
+        position: absolute;
+        margin:100px auto;
+        top:10%;
+        left: 50%;
+       
+        transform: translate(-50%, -50%);">
+        <!-- <div class="search"> -->
+        <form class='search' method="get" style="width: 100%;
+                position: relative;
+                display: flex;">
+            <input type="text" name="search" class="searchTerm" placeholder="What are you looking for?" style="width: 100%;
+                                border: 3px solid #00B4CC;
+                                border-right: none;
+                                padding: 5px;
+                                height: 50px;
+                                border-radius: 5px 0 0 5px;
+                                outline: none;
+                                color: black;">
+            <button type="submit" class="searchButton" style="width: 40px;
+                    height: 50px;
+                    border: 1px solid #00B4CC;
+                    background: #00B4CC;
+                    text-align: center;
+                    color: #fff;
+                    border-radius: 0 5px 5px 0;
+                    cursor: pointer;
+                    font-size: 20px;">
+                <i class="fa fa-search"></i>
+            </button>
+        </form>
+        <!-- </div> -->
+    </div>
+</div>
+<br><br><br><br>
+<div>
+    <section class="product_section layout_padding">
+        <div class="container">
+
+            <div class="heading_container heading_center">
+                <h3>
+                    All <span>Properties</span>
+                </h3>
+            </div>
+            <div class="noresult text-center m-5">
+                {% if properties|length < 1 %} 
+                    <p style="font-size: 24px;">No Properties Found</p>
+                {% endif %}
+            </div>
+            <div class="row">
+                {% for p in properties %}
+
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                    <div class="box">
+                        <div class="option_container">
+                            <div class="options">
+                                <a href="{% url 'singleview' p.id %}" class="option1">
+                                    View Details
+                                </a>
+                                <a href="" class="option2">
+                                    Buy Now
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="img-box">
-                        <img src="{{p.image.url}}" alt="" style="width: 300px;">
-                    </div>
-                    <div class="detail-box">
-                        <div>
-                            <h5>
-                                {{p.name}}
-                            </h5>
+                        <div class="img-box">
+                            <img src="{{p.image.url}}" alt="" style="width:300px; height:700px; object-fit:cover;">
                         </div>
-                        
-                        <div>
-                            <h6>
-                                {{p.price}}
-                             </h6>
+                        <div class="detail-box" style="display: flex; flex-direction:column">
+                            <div>
+                                <h5>
+                                    {{p.name}}
+                                </h5>
+                            </div>
+
+                            <div>
+                                <h6>
+                                    {{p.price}}
+                                </h6>
+                            </div>
+                            <h6>{{p.location}}</h6>
+
                         </div>
-                        
                     </div>
                 </div>
+                {% endfor %}
             </div>
-            {% endfor %}
+            
         </div>
-        <div class="btn-box">
-            <a href="">
-           View All products
-           </a>
-        </div>
-    </div>
-</section>
+    </section>
+</div>
 {% endblock %}
 
 

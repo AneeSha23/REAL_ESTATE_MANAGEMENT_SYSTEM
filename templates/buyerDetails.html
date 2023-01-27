@@ -7,14 +7,68 @@
 {% block body %}
 <div class="untree_co-section bg-light">
     <div class="container">
-     
-      <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="200">
-        <div class="col-lg-8 bg-white p-5">
-            <h3>Buyers Details</h3>
-            <h3>Property Details</h3>
-            <h3>Account Details</h3>
+
+
+      <section class="ftco-section">
+        <div class="container">
+            
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="h5 mb-4 text-center">Your dashboard</h3>
+                    <p class="text-start">Total:{{reqCount}} </p>
+                    <div class="table-wrap">
+                        <table class="table">
+                          <thead class="thead-primary">
+                            <tr>
+                                <th>Customer</th>
+                                <th>Property</th>
+                              <th>Property Name</th>
+                              <th>Price</th>
+                              <th>Emi Years</th>
+                              <th>Emi Amount</th>
+                              <th>Category</th>
+                              <th>Type</th>
+                              <th>&nbsp;</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {% for p in allDetails %}
+                           
+                            <tr class="alert" role="alert">
+                                <td>{{p.customer.name}}</td>
+                                <td>
+                                    <div class="img">
+                                        <a href="{% url 'singleview' p.property.id %}">
+                                        <img src="{{p.property.image.url}}" width="100px" height="100px">
+                                    </a>
+                                    </div>
+                                </td>
+                              <td>{{p.name}}</td>
+                              <td>{{p.property.price}}</td>
+                              <td>{{p.emiYear}}</td>
+                              <td>{{p.emiAmount}}</td>
+                              <td>{{p.property.category}}</td>
+                              <td>{{p.property.type}}</td>
+                              <td>
+                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true"><i class="fa fa-close"></i></span>
+                              </button>
+                            </td>
+                        
+                            </tr>
+                            {% endfor %}
+                            
+                          </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
+    </section>
+
+
+      
     </div>
-</div>  
+</div> 
+
 {% endblock %}
