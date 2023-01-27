@@ -185,6 +185,7 @@ def emi_request(request,pk):
 def allProperties(request):
     if 'search' in request.GET:
         search = request.GET['search']
+<<<<<<< HEAD
         properties = SellProperty.objects.filter(location__icontains=search)
     else:
         properties = SellProperty.objects.filter(status__icontains='Approved')
@@ -310,3 +311,10 @@ def bank(request):
     allDetails = EmiRequest.objects.all()
     reqCount = EmiRequest.objects.all().count
     return render(request, 'buyerDetails.html',{'allDetails':allDetails,'reqCount':reqCount})
+=======
+        properties = SellProperty.objects.filter(location__icontains = search)
+    else:
+        properties = SellProperty.objects.all()
+    return render(request,'allProperties.html',{'properties':properties})
+
+>>>>>>> 8e6d2074cd529905884115526fafecb64bc17d5d
