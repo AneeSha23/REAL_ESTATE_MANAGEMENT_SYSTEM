@@ -21,6 +21,19 @@ class Customer(models.Model):
     def __str__(self):
         return self.name
     
+class Category(models.Model):
+    name = models.CharField(max_length=50,null=True)
+    image = models.ImageField(upload_to=get_filepath, null=True)
+    date_created = models.DateTimeField(auto_now_add=True, null=True)
+
+    class Meta:
+        db_table='category'
+
+    def __str__(self):
+        return self.name
+
+    
+
 
 class SellProperty(models.Model):
     CATEGORY = (
@@ -45,6 +58,7 @@ class SellProperty(models.Model):
     )
     room=(("1","1"),("2","2"),("3","3"),("4","4"))
     customer = models.ForeignKey(Customer,null=True,on_delete=models.SET_NULL)
+    type = models.ForeignKey(Category,null=True,on_delete=models.SET_NULL)
     user = models.ForeignKey(User,null=True,on_delete=models.CASCADE)
     name =models.CharField(max_length=100, null=True,blank=False)
     owner = models.CharField(max_length=100,null=True,blank=False)
@@ -55,7 +69,6 @@ class SellProperty(models.Model):
     location = models.CharField(max_length=200, null=True, choices=LOCATION)
     category = models.CharField(max_length=200, null=True, choices=CATEGORY)
     image = models.ImageField(upload_to=get_filepath, null=True,blank=False)
-    type = models.CharField(max_length=200, null=True, choices=TYPE)
     status = models.CharField(max_length=200, null=True, choices=STATUS)
     bed = models.CharField(max_length=3,null=True, choices=room)
     baths = models.CharField(max_length=3,null=True,choices=room)
@@ -120,3 +133,5 @@ class EmiRequest(models.Model):
 
     def __str__(self):
         return  self.property.name
+    
+

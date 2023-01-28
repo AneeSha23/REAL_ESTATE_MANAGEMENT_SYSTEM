@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .models import SellProperty, Customer, Buyer,EmiRequest
+from .models import SellProperty, Customer, Buyer,EmiRequest, Category
 from django.contrib.auth.models import User, auth, Group
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -18,6 +18,11 @@ from .decorators import unauthenticated_user, allowed_users, admin_only
 def index(request):
     details = SellProperty.objects.filter(status__icontains='Approved')
     customer = Customer.objects.all()
+    category = Category.objects.all()
+    print(customer)
+
+    cust2 = Customer.objects.filter(name = request.user.username)
+    print(cust2)
     group = None
     if request.user.groups.exists():
         group = request.user.groups.all()[0].name
@@ -27,9 +32,9 @@ def index(request):
     if group == 'bank':
         return HttpResponseRedirect(reverse('bank'))
     if group == 'customer':
-        return render(request, 'index.html', {'details': details,'customer':customer})
+        return render(request, 'index.html', {'details': details,'customer':customer,'category':category})
 
-    return render(request, 'index.html', {'details': details})
+    return render(request, 'index.html', {'details': details, 'category':category})
 
 # -------Register Page-------
 
@@ -60,6 +65,7 @@ def register(request):
                 user = User.objects.create_user(
                     username=user_name, email=email, first_name=first_name, last_name=last_name, password=pwd)
                 user.save()
+                print("Registered User is ", user)
                 group = Group.objects.get(name='customer')
                 user.groups.add(group)
                 Customer.objects.create(
@@ -88,7 +94,7 @@ def loginUser(request):
         password = request.POST['pwd']
 
         user = authenticate(request, username=username, password=password)
-
+        
         if user is not None:
             login(request, user)
             return redirect('index')
@@ -118,6 +124,7 @@ def singleview(request, pk):
 def propertyform(request,pk):
     customer = Customer.objects.get(id=pk)
     customer1 = Customer.objects.filter(id=pk)
+    category = Category.objects.all()
     if request.method == 'POST':
         newProperty = SellProperty(customer=customer)
 
@@ -129,6 +136,7 @@ def propertyform(request,pk):
         newProperty.description = request.POST['desc']
         newProperty.bed = request.POST['bed']
         newProperty.baths=request.POST['baths']
+        newProperty.type =  Category.objects.get(id=request.POST["type"])
         newProperty.location = request.POST['location']
         newProperty.category = request.POST['cat']
         newProperty.image = request.FILES['image']
@@ -136,7 +144,7 @@ def propertyform(request,pk):
         print('property Added Successfully')
         return redirect('/')
     else:
-        context={'customer':customer1, 'customer1':customer}
+        context={'customer':customer1, 'customer1':customer, 'category':category}
         return render(request, 'sellform.html',context)
 
 
@@ -183,13 +191,21 @@ def emi_request(request,pk):
 # ---------All Properties Page--------
 @login_required(login_url='login')
 def allProperties(request):
+    categories = Category.objects.all()
+    catId = request.GET.get('category')
     if 'search' in request.GET:
         search = request.GET['search']
-<<<<<<< HEAD
         properties = SellProperty.objects.filter(location__icontains=search)
     else:
         properties = SellProperty.objects.filter(status__icontains='Approved')
-    return render(request, 'allProperties.html', {'properties': properties})
+    if catId:
+        properties = SellProperty.objects.filter(type = catId,status__icontains='Approved')
+        return render(request, 'allProperties.html', {'properties': properties})
+    else:
+        properties=SellProperty.objects.filter(status__icontains='Approved')
+        return render(request, 'allProperties.html', {'properties': properties})
+
+
 
 
 # --------User Dashboard---------
@@ -272,6 +288,15 @@ def properties(request):
 def singleprop(request):
     return render(request, 'adm/single.html')
 
+def category(request):
+    if request.method == 'POST':
+        cat = Category()
+        cat.name = request.POST['category']
+        cat.image = request.FILES['catImg']
+        cat.save()
+        return redirect('category')
+    else:
+        return render(request,'adm/category.html')
 
 def logoutAdm(request):
     logout(request)
@@ -280,10 +305,15 @@ def logoutAdm(request):
 
 def edit(request, id):
     Data = SellProperty.objects.get(id=id)
-    return render(request, 'adm/editForm.html', {'Data': Data})
+    category = Category.objects.all()
+    return render(request, 'adm/editForm.html', {'Data': Data, 'category':category})
 
 
 def formUpdate(request, id):
+
+    category = Category.objects.all()
+    print(category)
+
     if request.method == 'POST':
         newProperty = SellProperty.objects.get(id=id)
 
@@ -293,13 +323,13 @@ def formUpdate(request, id):
         newProperty.phone = request.POST['phone']
         newProperty.landmark = request.POST['landmark']
         newProperty.description = request.POST['description']
-        newProperty.type = request.POST['type']
+        newProperty.type =  Category.objects.get(id=request.POST["type"])
         newProperty.status = request.POST['status']
         newProperty.save()
         print('property Added Successfully')
         return redirect('dashboard')
     else:
-        return render(request, 'adm/editForm.html')
+        return render(request, 'adm/editForm.html',{'category':category})
 
 # ----------------------------------------------------------------------------------
 # --------------------Bank Dashboard---------------------
@@ -311,10 +341,6 @@ def bank(request):
     allDetails = EmiRequest.objects.all()
     reqCount = EmiRequest.objects.all().count
     return render(request, 'buyerDetails.html',{'allDetails':allDetails,'reqCount':reqCount})
-=======
-        properties = SellProperty.objects.filter(location__icontains = search)
-    else:
-        properties = SellProperty.objects.all()
-    return render(request,'allProperties.html',{'properties':properties})
 
->>>>>>> 8e6d2074cd529905884115526fafecb64bc17d5d
+
+

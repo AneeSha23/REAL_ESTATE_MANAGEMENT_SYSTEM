@@ -21,23 +21,24 @@
             Property Type
             </a>
           
+           
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <a class="dropdown-item" href="">House</a>
-              <a class="dropdown-item" href="">villas</a>
-              <a class="dropdown-item" href="">Land</a>
-              <a class="dropdown-item" href="">Paying Guests</a>
+              {% for cat in category %}
+              <a class="dropdown-item" href="{% url 'allProperties' %}?category={{cat.id}}">{{cat.name}}</a>
+              {% endfor %}
             </div>
           
         </li>
             
 
           {% if user.is_authenticated %}
-          {% for i in customer %}
-          
-          {% if i.name == user.username %}
           <li><a class=" dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            {{i.name}}
+            {{user.username}}
             </a>
+          {% for i in customer %}
+<!--           
+          {% if i.name == user.username %} -->
+         
           
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
               <a class="dropdown-item" href="{% url 'userdashboard' i.id %}">Dashboard</a>
@@ -46,7 +47,7 @@
             </div>
           
         </li>
-          {% endif %}
+          <!-- {% endif %} -->
             
           {% endfor %}
           <li class="cta-button active"><a href="{% url 'logout' %}">Logout</a></li>

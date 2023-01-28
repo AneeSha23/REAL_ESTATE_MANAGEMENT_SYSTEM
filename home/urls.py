@@ -5,7 +5,6 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('login/', views.loginUser, name='login'),
     path('register/', views.register, name='register'),
-<<<<<<< HEAD
     path('logout/', views.logoutUser, name='logout'),
     path('single/<int:pk>', views.singleview, name='singleview'),
     path('sell/<int:pk>', views.propertyform, name='propertyform'),
@@ -22,17 +21,11 @@ urlpatterns = [
     path('edit/<int:id>', views.edit, name='edit'),
     path('formUpdate/<int:id>', views.formUpdate, name='formUpdate'),
     path('logout/', views.logoutAdm, name='logoutAdm'),
+    path("category/", views.category, name="category"),
 
     # ---------------------Bank Dashboard Urls-------------------
 
     path('bank/', views.bank, name='bank')
 
 ]
-=======
-    path('single/<int:pk>',views.singleview, name='singleview'),
-    path('sell/', views.propertyform, name='propertyform'),
-    path('buy/',views.buyform, name='buyform'),
-    path('all/',views.allProperties,name='allProperties'),
 
-]
->>>>>>> 8e6d2074cd529905884115526fafecb64bc17d5d

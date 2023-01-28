@@ -89,7 +89,15 @@
                     <option value="Short Time">Short Time</option>
                   </select>
             </div>
+            <div class="form-group">
+              <label class="text-black" for="password2">Category</label>
 
+              <select class="form-control" name="type" aria-label="Default select example">
+                {% for c in category %}
+                <option value="{{c.id}}">{{c.name}}</option>
+                {% endfor %}
+                </select>
+          </div>
             <div class="form-group">
               <label class="text-black" for="password2">Description</label>
               <textarea type="text" name="desc" class="form-control" rows="5"></textarea>

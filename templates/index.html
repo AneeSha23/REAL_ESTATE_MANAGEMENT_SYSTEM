@@ -335,6 +335,18 @@ Real Estate Management System
     </a>
 </div>
 
+
+<h1>Property Types</h1>
+<div>
+  {% for c in category %}
+    <h3>{{c.name}}</h3>
+    <a href="{% url 'allProperties' %}?category={{c.id}}">
+      <img src="{{c.image.url}}" width="100px" height="100px">
+    </a>
+  {% endfor %}
+</div>
+
+
   <div class="untree_co-section">
     <div class="container">
       <div class="row justify-content-center text-center">
