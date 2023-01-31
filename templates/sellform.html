@@ -23,7 +23,7 @@
               <div class="col-6">
                 <div class="form-group">
                   <label class="text-black" for="lname">Owner</label>
-                  <input type="text" name="owner" class="form-control" id="lname">
+                  <input type="text" name="owner" value="{{user.username}}" class="form-control" id="lname">
                 </div>
               </div>
             </div>
@@ -34,7 +34,7 @@
                 <label class="text-black" for="password2">Location</label>
 
                 <select class="form-control" name="location" aria-label="Default select example">
-                    <option selected>Select Location</option>
+                    <option selected disabled>Select Location</option>
                     <option value="Kerala"> Kerala </option>
                     <option value="TamilNadu"> TamilNadu </option>
                     <option value="Karnataka"> Karnataka </option>
@@ -42,7 +42,7 @@
             </div>
             <div class="form-group">
                 <label class="text-black" for="email">Price</label>
-                <input type="number" name="price" class="form-control" id="email">
+                <input type="text" name="price" class="form-control" >
               </div>
 
             <div class="form-group">
@@ -58,32 +58,21 @@
 
 
             <div class="form-group">
-              <label class="text-black" for="password2">Number Of Bedrooms</label>
-
-              <select class="form-control" name="bed" aria-label="Default select example">
-                  <option selected value="1">1 </option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4"> 4</option>
-                </select>
-          </div>
-
-          <div class="form-group">
-            <label class="text-black" for="password2">Number Of Baths</label>
-
-            <select class="form-control" name="baths" aria-label="Default select example">
-                <option selected value="1">1 </option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4"> 4</option>
-              </select>
-        </div>
+              <label class="text-black" for="password">Beds</label>
+              <input type="text" name="bed" class="form-control" id="password">
+            </div>
 
             <div class="form-group">
-                <label class="text-black" for="password2">Category</label>
+              <label class="text-black" for="password">Baths</label>
+              <input type="text" name="baths" class="form-control" id="password">
+            </div>
+
+
+            <div class="form-group">
+                <label class="text-black" for="password2">Type</label>
 
                 <select class="form-control" name="cat" aria-label="Default select example">
-                    <option selected>Select Category</option>
+                    <option selected disabled>Select Type</option>
                     <option value="Sale">Sale</option>
                     <option value="Rent">Rent</option>
                     <option value="Short Time">Short Time</option>
@@ -93,7 +82,9 @@
               <label class="text-black" for="password2">Category</label>
 
               <select class="form-control" name="type" aria-label="Default select example">
+                <option selected disabled>Select One</option>
                 {% for c in category %}
+                
                 <option value="{{c.id}}">{{c.name}}</option>
                 {% endfor %}
                 </select>

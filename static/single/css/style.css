@@ -1100,7 +1100,7 @@ form input[type="submit"] {
     line-height: normal;
     margin: 0 auto;
     display: flex;
-    background: #333;
+    background: #6dabe4;
     color: #fff;
     font-weight: 600;
     transition: ease all 0.1s;
@@ -1108,7 +1108,7 @@ form input[type="submit"] {
 
 form input[type="submit"]:hover,
 form input[type="submit"]:focus {
-    background: #f7444e;
+    background: #4292dc;
     color: #fff;
 }
 

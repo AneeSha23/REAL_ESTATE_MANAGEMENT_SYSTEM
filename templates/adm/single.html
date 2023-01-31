@@ -6,20 +6,102 @@
 
 {% block body %}
 <div class="container-xxl flex-grow-1 container-p-y">
+  <div class="row">
     <div class="col-md-7 col-xl-4">
-        <div class="card mb-3">
-          <img class="card-img-top" src="{% static 'admin/img/elements/18.jpg' %}" alt="Card image cap" />
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">
-              This is a wider card with supporting text below as a natural lead-in to additional content. This
-              content is a little bit longer.
-            </p>
-            <p class="card-text">
-              <small class="text-muted">Last updated 3 mins ago</small>
-            </p>
-          </div>
+      <div class="card mb-3">
+        <img class="card-img-top" src="{{single.image.url}}" alt="Card image cap" />
+        <div class="card-body">
+          <h3 class="card-title"> {{single.name}}</h3>
+
+          <h5>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+              class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+              <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
+            </svg>
+            {{single.location}}
+          </h5>
+
+          <h4>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+              class="bi bi-currency-rupee" viewBox="0 0 16 16">
+              <path
+                d="M4 3.06h2.726c1.22 0 2.12.575 2.325 1.724H4v1.051h5.051C8.855 7.001 8 7.558 6.788 7.558H4v1.317L8.437 14h2.11L6.095 8.884h.855c2.316-.018 3.465-1.476 3.688-3.049H12V4.784h-1.345c-.08-.778-.357-1.335-.793-1.732H12V2H4v1.06Z" />
+            </svg>
+            {{single.price}}
+          </h4>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">Landmark</th>
+                <th scope="col">Type</th>
+                <th scope="col">category</th>
+                <th scope="col">Beds</th>
+                <th scope="col">Baths</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+
+                <td>{{single.landmark}}</td>
+                <td>{{single.type}}</td>
+                <td>{{single.category}}</td>
+                <td>{{single.bed}}</td>
+                <td>{{single.baths}}</td>
+              </tr>
+
+            </tbody>
+          </table>
+
+
+
+          <br>
+          <p class="card-text">
+            {{single.description}}
+          </p>
+          
         </div>
       </div>
+    </div>
+
+    <div class="col-md-5 col-xl-4">
+      <section style="background-color: #eee;">
+    
+    
+            <div class="container py-5">
+              <div class="row">
+                <div class="col">
+                  <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
+                    <ol class="breadcrumb mb-0">
+                      <li class="breadcrumb-item active" aria-current="page">Client Details</li>
+                    </ol>
+                  </nav>
+                </div>
+              </div>
+          
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="card mb-4">
+                    <div class="card-body text-center">
+                      <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+                        class="rounded-circle img-fluid" style="width: 120px;">
+                    
+                      
+                      <hr>
+                     <div>
+                      <p>Name: {{single.owner}}</p>
+                      <p>Phone: {{single.phone}}</p>
+                      <p>Email:{{single.customer.user.email}}</p>
+                     </div>
+                      
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+     
+          </section>
+    </div>
+  </div>
 </div>
 {% endblock %}

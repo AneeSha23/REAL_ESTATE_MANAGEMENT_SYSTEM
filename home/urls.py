@@ -17,7 +17,7 @@ urlpatterns = [
 
     path('rAdmin/', views.dashboard, name='dashboard'),
     path('allprop/', views.properties, name='properties'),
-    path('singleprop/', views.singleprop, name='singleprop'),
+    path('singleprop/<int:pk>', views.singleprop, name='singleprop'),
     path('edit/<int:id>', views.edit, name='edit'),
     path('formUpdate/<int:id>', views.formUpdate, name='formUpdate'),
     path('logout/', views.logoutAdm, name='logoutAdm'),

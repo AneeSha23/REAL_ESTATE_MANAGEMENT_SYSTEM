@@ -33,7 +33,7 @@
                             <label class="col-sm-2 col-form-label">Price</label>
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">
-                                    <input type="number" value="{{Data.price}}" name="price" class="form-control" />
+                                    <input type="text" value="{{Data.price}}" name="price" class="form-control" />
                                 </div>
                             </div>
                         </div>
@@ -84,10 +84,11 @@
                           <div class=" row mb-3">
                             <label  class="col-sm-2 form-label">Type </label>
                             <div class="col-sm-10">
-                            <select id="defaultSelect" value="{{Data.type}}" name="type" class="form-select">
-                                {% for c in category %}
-                                <option value="{{c.id}}">{{c.name}}</option>
-                                {% endfor %}
+                            <select id="defaultSelect" disabled value="{{Data.type}}" name="type" class="form-select">
+                                
+                                <option value="{{Data.type}}" >{{Data.type}}</option>
+                               
+                               
                             </select>
                         </div>
                           </div>

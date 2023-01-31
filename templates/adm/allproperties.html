@@ -29,8 +29,9 @@
           <tr>
             
             <td>
-              
+              <a href="{% url 'singleprop' i.id %}">
               <img src="{{i.image.url}}" alt="{{i.name}}" width="80px" />
+            </a>
            
         </td>
             <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{i.name}}</strong></td>

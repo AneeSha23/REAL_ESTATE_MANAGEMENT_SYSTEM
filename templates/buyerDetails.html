@@ -1,74 +1,116 @@
 
-{% extends 'base.html' %}
 {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bank-Emi Requests</title>
 
-{% block title %}{% endblock %}
 
-{% block body %}
-<div class="untree_co-section bg-light">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/owl.carousel.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/owl.theme.default.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/jquery.fancybox.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'fonts/icomoon/style.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'fonts/flaticon/font/flaticon.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/aos.css' %}">
+  <link rel="stylesheet" type="text/css"  href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+  <link rel="stylesheet" href="{% static 'css1/style.css' %}">
+</head>
+<body>
+
+  <nav class="site-nav">
     <div class="container">
+      <div class="site-navigation">
+        <a href="{% url 'index' %}" class="logo m-0">Homespace <span class="text-primary">.</span></a>
 
-
-      <section class="ftco-section">
-        <div class="container">
-            
-            <div class="row">
-                <div class="col-md-12">
-                    <h3 class="h5 mb-4 text-center">Your dashboard</h3>
-                    <p class="text-start">Total:{{reqCount}} </p>
-                    <div class="table-wrap">
-                        <table class="table">
-                          <thead class="thead-primary">
-                            <tr>
-                                <th>Customer</th>
-                                <th>Property</th>
-                              <th>Property Name</th>
-                              <th>Price</th>
-                              <th>Emi Years</th>
-                              <th>Emi Amount</th>
-                              <th>Category</th>
-                              <th>Type</th>
-                              <th>&nbsp;</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {% for p in allDetails %}
-                           
-                            <tr class="alert" role="alert">
-                                <td>{{p.customer.name}}</td>
-                                <td>
-                                    <div class="img">
-                                        <a href="{% url 'singleview' p.property.id %}">
-                                        <img src="{{p.property.image.url}}" width="100px" height="100px">
-                                    </a>
-                                    </div>
-                                </td>
-                              <td>{{p.name}}</td>
-                              <td>{{p.property.price}}</td>
-                              <td>{{p.emiYear}}</td>
-                              <td>{{p.emiAmount}}</td>
-                              <td>{{p.property.category}}</td>
-                              <td>{{p.property.type}}</td>
-                              <td>
-                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true"><i class="fa fa-close"></i></span>
-                              </button>
-                            </td>
-                        
-                            </tr>
-                            {% endfor %}
-                            
-                          </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+        <ul class="js-clone-nav d-none d-lg-inline-block text-left float-right site-menu">
+          <li class="active"><a href="{% url 'index' %}">Home</a></li>
+          <li class="cta-button active"><a href="{% url 'logout' %}">Logout</a></li>
+        </ul>
         </div>
-    </section>
+        </div>
+        </nav>
 
 
-      
-    </div>
-</div> 
+  <div class="container">
 
-{% endblock %}
+
+    <section class="ftco-section">
+      <div class="container">
+          
+          <div class="row">
+              <div class="col-md-12">
+                  <h3 class="h5 mb-4 text-center">EMI REQUESTS</h3>
+                  <p class="text-start">Total:{{reqCount}} </p>
+                  <div class="table-wrap">
+                      <table class="table">
+                        <thead class="thead-primary">
+                          <tr>
+                              <th>Customer</th>
+                              <th>Property</th>
+                            <th>Property Name</th>
+                            <th>Price</th>
+                            <th>Emi Years</th>
+                            <th>Emi Amount</th>
+                            <th>Category</th>
+                            <th>Type</th>
+                            <th>&nbsp;</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {% for p in allDetails %}
+                         
+                          <tr class="alert" role="alert">
+                              <td>{{p.customer.name}}</td>
+                              <td>
+                                  <div class="img">
+                                    <a href="{% url 'singleview' p.property_id %}">
+                                      <img src="{{p.property.image.url}}" width="100px" height="100px">
+                                    </a>
+                                  </div>
+                              </td>
+                            <td>{{p.name}}</td>
+                            <td>{{p.property.price}}</td>
+                            <td>{{p.emiYear}}</td>
+                            <td>{{p.emiAmount}}</td>
+                            <td>{{p.property.category}}</td>
+                            <td>{{p.property.type}}</td>
+                            <td>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true"><i class="fa fa-close"></i></span>
+                            </button>
+                          </td>
+                      
+                          </tr>
+                          {% endfor %}
+                          
+                        </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+
+
+    
+  </div>
+
+
+
+  <script src="{% static 'js1/popper.js' %}"></script>
+  <script src="{% static 'js1/bootstrap.min.js' %}"></script>
+  <script src="{% static 'js1/main.js' %}"></script>
+</body>
+</html>
+

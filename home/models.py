@@ -14,6 +14,9 @@ def get_filepath(request,filename):
 class Customer(models.Model):
     user = models.OneToOneField(User,null=True, on_delete=models.CASCADE)
     name = models.CharField(max_length=100, null=True)
+    email = models.EmailField(max_length=100, null=True)
+    phone = models.CharField(max_length=12,null=True)
+    Address = models.TextField(max_length=200, null=True)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
     class Meta:
         db_table = "Customer"
@@ -62,7 +65,7 @@ class SellProperty(models.Model):
     user = models.ForeignKey(User,null=True,on_delete=models.CASCADE)
     name =models.CharField(max_length=100, null=True,blank=False)
     owner = models.CharField(max_length=100,null=True,blank=False)
-    price = models.FloatField(max_length=10,null=True,blank=False)
+    price = models.CharField(max_length=10,null=True,blank=False)
     phone = models.CharField(max_length=10,null=True,blank=False)
     landmark = models.CharField(max_length=500,null=True,blank=False)
     description = models.TextField(max_length=500, null=True,blank=False)
@@ -70,8 +73,8 @@ class SellProperty(models.Model):
     category = models.CharField(max_length=200, null=True, choices=CATEGORY)
     image = models.ImageField(upload_to=get_filepath, null=True,blank=False)
     status = models.CharField(max_length=200, null=True, choices=STATUS)
-    bed = models.CharField(max_length=3,null=True, choices=room)
-    baths = models.CharField(max_length=3,null=True,choices=room)
+    bed = models.CharField(max_length=3,null=True)
+    baths = models.CharField(max_length=3,null=True)
     date_created = models.DateTimeField(auto_now_add=True,  null=True)
 
 
@@ -117,8 +120,8 @@ class EmiRequest(models.Model):
         ('9000','9000'),
         ('10000','10000'),
          )
-    property = models.ForeignKey(SellProperty,null=True, on_delete=models.SET_NULL)
-    customer = models.ForeignKey(Customer,null=True,on_delete=models.SET_NULL)
+    property = models.ForeignKey(SellProperty,null=True, on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer,null=True,on_delete=models.CASCADE)
     name = models.CharField(max_length=20, null=True)
     dob = models.DateField(max_length=8,null=True)
     emiYear = models.CharField(max_length=2,null=True, choices=YEAR)

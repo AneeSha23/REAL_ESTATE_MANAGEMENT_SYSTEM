@@ -57,14 +57,19 @@
             <div class="row">
                 {% for p in properties %}
 
-                <div class="col-sm-6 col-md-4 col-lg-3">
-                    <div class="box">
+                <div class="col-sm-6 col-md-4 col-lg-4">
+                    <span class=" position-absolute top-0 start-100  z-n1 p-2 border border-light" 
+                        style="top: -10px; background: #00B4CC; color:#fff">
+                        For {{p.category}}
+                    </span>
+
+                    <div class="box" style="height: 500px;">
                         <div class="option_container">
                             <div class="options">
                                 <a href="{% url 'singleview' p.id %}" class="option1">
                                     View Details
                                 </a>
-                                <a href="" class="option2">
+                                <a href="{% url 'buyform' p.id %}" class="option2">
                                     Buy Now
                                 </a>
                             </div>
@@ -81,7 +86,7 @@
 
                             <div>
                                 <h6>
-                                    {{p.price}}
+                                    ₹{{p.price}}
                                 </h6>
                             </div>
                             <h6>{{p.location}}</h6>
