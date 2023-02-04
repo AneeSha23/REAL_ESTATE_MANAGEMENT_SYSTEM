@@ -25,7 +25,9 @@ urlpatterns = [
 
     # ---------------------Bank Dashboard Urls-------------------
 
-    path('bank/', views.bank, name='bank')
+    path('bank/', views.bank, name='bank'),
+    path('updateemi/<int:id>/', views.updateEmi, name='updateEmi'),
+    path('emiFormupdate/<int:id>/', views.emiFormupdate,name='emiFormupdate')
 
 ]
 

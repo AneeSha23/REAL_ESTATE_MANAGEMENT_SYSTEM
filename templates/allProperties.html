@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-
+{% block title %} Properties List {% endblock %}
 
 {% block body %}
 <div class="search">
@@ -50,15 +50,14 @@
                 </h3>
             </div>
             <div class="noresult text-center m-5">
-                {% if properties|length < 1 %} 
-                    <p style="font-size: 24px;">No Properties Found</p>
-                {% endif %}
+                {% if properties|length < 1 %} <p style="font-size: 24px;">No Properties Found</p>
+                    {% endif %}
             </div>
             <div class="row">
                 {% for p in properties %}
 
                 <div class="col-sm-6 col-md-4 col-lg-4">
-                    <span class=" position-absolute top-0 start-100  z-n1 p-2 border border-light" 
+                    <span class=" position-absolute top-0 start-100  z-n1 p-2 border border-light"
                         style="top: -10px; background: #00B4CC; color:#fff">
                         For {{p.category}}
                     </span>
@@ -69,9 +68,13 @@
                                 <a href="{% url 'singleview' p.id %}" class="option1">
                                     View Details
                                 </a>
+                                {% if request.user.username == p.owner %}
+                                <div></div>
+                                {% else %}
                                 <a href="{% url 'buyform' p.id %}" class="option2">
                                     Buy Now
                                 </a>
+                                {% endif %}
                             </div>
                         </div>
                         <div class="img-box">
@@ -96,7 +99,7 @@
                 </div>
                 {% endfor %}
             </div>
-            
+
         </div>
     </section>
 </div>

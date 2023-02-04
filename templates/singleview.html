@@ -2,7 +2,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}{% endblock %}
+{% block title %}Real Estate Management System{% endblock %}
 
 {% block body %}
 
@@ -41,12 +41,14 @@
                             <strong>{{details.bed}}</strong>
                           </li>
                           </ul>
-                        
+                        {% if request.user.username == details.owner %}
+                        <div></div>
+                        {% else %}
                       <a class="btn" href="{% url 'buyform' details.id %}" style="background: #009ECE; color:#fff">Buy Now</a>
                       &nbsp;
                       <a href="{% url 'emi_request' details.id %}" class="btn btn-outline" onMouseOver="this.style.background='#009ECE'; this.style.color='#fff'" onMouseOut="this.style.color='#009ECE'; this.style.background='none'" style="border-color: #009ECE; color:#009ECE;">Emi request</a>
           
-                      
+                      {% endif %}
                       </div>
                   </div>
               </div>

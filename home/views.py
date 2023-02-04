@@ -167,6 +167,10 @@ def propertyform(request, pk):
 @login_required(login_url='login')
 def buyform(request, pk):
     property = SellProperty.objects.get(id=pk)
+    category = Category.objects.all()
+    
+    
+    customer = Customer.objects.all()
     cust = Customer.objects.get(name=request.user.username)
     if request.method == 'POST':
         buyer = Buyer(property=property, customer=cust)
@@ -176,7 +180,7 @@ def buyform(request, pk):
         buyer.save()
         return redirect('/')
     else:
-        context = {'property': property}
+        context = {'property': property, 'category':category, 'customer':customer}
         return render(request, 'buyForm.html', context)
 
 
@@ -192,7 +196,6 @@ def emi_request(request, pk):
         emi.bankName = request.POST['bank']
         emi.bankBranch = request.POST['branch']
         emi.emiYear = request.POST['years']
-        emi.emiAmount = request.POST['amount']
 
         emi.save()
         return redirect('/')
@@ -233,6 +236,9 @@ def userDashboard(request, pk_test):
 
     category = Category.objects.all()
 
+    emireq = customer1.emirequest_set.all()
+    emicount = customer1.emirequest_set.all().count
+
     buys = customer1.buyer_set.all()
     buyCount = customer1.buyer_set.all().count
 
@@ -245,10 +251,19 @@ def userDashboard(request, pk_test):
         'propsCount': propsCount,
         'buys': buys,
         'buyCount': buyCount,
-        'category': category
+        'category': category,
+        'emireq':emireq,
+        'emicount':emicount
     }
     return render(request, 'userDash.html', context)
 
+
+
+
+# --------Delete Property-------------
+# def deleteprop(request,id):
+#     property = SellProperty.objects.get(id=id)
+#     property.delete()
 # ----------------------------------------------------------------------------------
 
 
@@ -339,6 +354,31 @@ def formUpdate(request, id):
 def bank(request):
 
     allDetails = EmiRequest.objects.all()
-    print(allDetails)
     reqCount = EmiRequest.objects.all().count
     return render(request, 'buyerDetails.html', {'allDetails': allDetails, 'reqCount': reqCount})
+
+@allowed_users(allowed_roles=['bank'])
+def updateEmi(request,id):
+
+    emi = EmiRequest.objects.filter(id=id)
+    emi1 = EmiRequest.objects.get(id=id)
+
+    emiPerMon = round((int(emi1.property.price))/(int(emi1.emiYear)*12))
+
+    print("tAmt",emiPerMon)
+
+   
+    return render(request, 'bankForm.html',{'emi':emi,'emiPerMon':emiPerMon})
+    
+
+
+def emiFormupdate(request,id):
+   
+   
+    if request.method == 'POST':
+        emi = EmiRequest.objects.get(id=id)
+        emi.emiAmount = request.POST['amount']
+
+        emi.save()
+        return redirect('bank')
+    return render(request, 'bankForm.html')

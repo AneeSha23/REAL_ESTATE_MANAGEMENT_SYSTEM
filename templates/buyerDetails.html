@@ -74,9 +74,9 @@
                               <td>{{p.customer.name}}</td>
                               <td>
                                   <div class="img">
-                                    <a href="{% url 'singleview' p.property_id %}">
+                                    
                                       <img src="{{p.property.image.url}}" width="100px" height="100px">
-                                    </a>
+                                 
                                   </div>
                               </td>
                             <td>{{p.name}}</td>
@@ -86,9 +86,9 @@
                             <td>{{p.property.category}}</td>
                             <td>{{p.property.type}}</td>
                             <td>
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <a type="button" class="close" href="{% url 'updateEmi' p.id %}">
                               <span aria-hidden="true"><i class="fa fa-close"></i></span>
-                            </button>
+                                </a>
                           </td>
                       
                           </tr>
